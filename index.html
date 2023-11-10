@@ -18,7 +18,7 @@
       try {
         const response = await fetch("https://skyz03.github.io/Coutry-Data-API/data.json");
         const data = await response.json();
-        const filteredCountries = data.filter(country => country.region = "Europe");
+        const filteredCountries = data.filter(country => country.region === "Asia");
 
         if (Array.isArray(filteredCountries)) {
           const dataContainer = document.getElementById("data-container");
