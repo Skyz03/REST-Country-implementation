@@ -1,16 +1,18 @@
 // Function to fetch and display the data
-async function fetchData() {
+async function fetchData(region) {
   try {
     const response = await fetch(
       "https://skyz03.github.io/Coutry-Data-API/data.json"
     );
     const data = await response.json();
+
     const filteredCountries = data.filter(
-      (country) => country.region === "Asia"
+      (country) => country.region === region
     );
 
     if (Array.isArray(filteredCountries)) {
       const dataContainer = document.getElementById("data-container");
+      dataContainer.innerHTML = ""; // Clear previous content
 
       filteredCountries.forEach((country) => {
         const countryDiv = document.createElement("div");
@@ -33,5 +35,5 @@ async function fetchData() {
   }
 }
 
-// Call the fetchData function when the page loads
-fetchData();
+// Call the fetchData function with the initial region when the page loads
+fetchData("Asia");
