@@ -16,14 +16,11 @@ async function fetchData(region) {
 
       filteredCountries.forEach((country) => {
         const countryDiv = document.createElement("div");
-        countryDiv.innerHTML = `<h2>${country.name}</h2>
+        countryDiv.innerHTML = `<img src="${country.flag}" alt="${country.name} Flag">
+                            <h2>${country.name}</h2>
                             <p>Population: ${country.population}</p>
                             <p>Capital: ${country.capital}</p>
-                            <p>Region: ${country.region}</p>
-                            <p>Subregion: ${country.subregion}</p>
-                            <p>Alpha2 Code: ${country.alpha2Code}</p>
-                            <p>Alpha3 Code: ${country.alpha3Code}</p>
-                            <img src="${country.flag}" alt="${country.name} Flag">`;
+                            <p>Region: ${country.region}</p>`;
 
         dataContainer.appendChild(countryDiv);
       });
