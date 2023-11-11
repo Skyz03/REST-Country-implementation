@@ -7,13 +7,13 @@ const App = () => {
   const [countries, setCountries] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetch data when selected region changes
+  // Fetch data when selected region or search term changes
   useEffect(() => {
-    fetchData(selectedRegion);
-  }, [selectedRegion]);
+    fetchData(selectedRegion, searchTerm);
+  }, [selectedRegion, searchTerm]);
 
   // Function to fetch data from the API
-  const fetchData = async (region) => {
+  const fetchData = async (region, term) => {
     try {
       const response = await fetch(
         "https://skyz03.github.io/Coutry-Data-API/data.json"
@@ -24,7 +24,7 @@ const App = () => {
       const filteredCountries = data.filter(
         (country) =>
           country.region === region &&
-          country.name.toLowerCase().includes(searchTerm.toLowerCase())
+          country.name.toLowerCase().includes(term.toLowerCase())
       );
 
       // Update state with the filtered countries
@@ -69,6 +69,7 @@ const App = () => {
           className="p-2 border rounded"
         >
           {/* Dropdown options for regions */}
+          <option value="All">All</option>
           <option value="Asia">Asia</option>
           <option value="Europe">Europe</option>
           <option value="Africa">Africa</option>
