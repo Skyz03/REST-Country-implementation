@@ -69,7 +69,6 @@ const App = () => {
           className="p-2 border rounded"
         >
           {/* Dropdown options for regions */}
-          <option value="All">All</option>
           <option value="Asia">Asia</option>
           <option value="Europe">Europe</option>
           <option value="Africa">Africa</option>
