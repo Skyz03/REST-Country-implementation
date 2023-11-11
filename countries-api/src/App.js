@@ -4,6 +4,7 @@ import "./index.css";
 const App = () => {
   const [selectedRegion, setSelectedRegion] = useState("Asia");
   const [countries, setCountries] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchData(selectedRegion);
@@ -17,7 +18,9 @@ const App = () => {
       const data = await response.json();
 
       const filteredCountries = data.filter(
-        (country) => country.region === region
+        (country) =>
+          country.region === region &&
+          country.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
 
       if (Array.isArray(filteredCountries)) {
@@ -30,9 +33,22 @@ const App = () => {
     }
   };
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl text-red-400 font-bold mb-8">Country Data</h1>
+      <h1 className="text-4xl font-bold mb-8">Country Data</h1>
+
+      {/* Search input */}
+      <input
+        type="text"
+        placeholder="Search by country name"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        className="p-2 border rounded mb-4"
+      />
 
       {/* Dropdown menu for selecting regions */}
       <label htmlFor="regionSelect" className="text-lg font-semibold mb-4">
