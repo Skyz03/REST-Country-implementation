@@ -84,19 +84,21 @@ const App = () => {
         {countries.map((country) => (
           <div
             key={country.name}
-            className="bg-gray-200 border border-gray-300 p-4 rounded-md text-center transition-transform hover:scale-105"
+            className="bg-gray-200 border border-gray-300 rounded-md transition-transform hover:scale-105"
           >
             {/* Country flag */}
             <img
               src={country.flag}
               alt={`${country.name} Flag`}
-              className="mb-4 mx-auto"
+              className="h-56 object-cover w-full"
             />
             {/* Country information */}
-            <h2 className="text-lg font-semibold">{country.name}</h2>
-            <p>Population: {country.population}</p>
-            <p>Capital: {country.capital}</p>
-            <p>Region: {country.region}</p>
+            <div className="p-6">
+              <h2 className="text-lg font-semibold">{country.name}</h2>
+              <p>Population: {country.population}</p>
+              <p>Capital: {country.capital}</p>
+              <p>Region: {country.region}</p>
+            </div>
           </div>
         ))}
       </div>
