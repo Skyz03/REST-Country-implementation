@@ -7,6 +7,12 @@ const App = () => {
   const [countries, setCountries] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  const toggleTheme = () => {
+    setIsDarkTheme((prevTheme) => !prevTheme);
+  };
+
   // Fetch data when selected region or search term changes
   useEffect(() => {
     fetchData(selectedRegion, searchTerm);
@@ -46,36 +52,53 @@ const App = () => {
   return (
     <div className="container mx-auto p-4">
       {/* Page title */}
-      <h1 className="text-4xl font-bold mb-8 text-center">Country Data</h1>
+      <div className={`container ${isDarkTheme ? "dark" : "light"}`}>
+        <h1 className="text-4xl font-bold mb-8 text-center">Country Data</h1>
 
-      <div className="text-center">
+        {/* Your other content goes here */}
+
+        <div className="text-center mt-4">
+          <button
+            onClick={toggleTheme}
+            className="px-4 py-2 bg-gray-500 text-white rounded-md"
+          >
+            Toggle Theme
+          </button>
+        </div>
+      </div>
+
+      <div className="flex flex-row justify-between">
         {/* Search input */}
-        <input
-          type="text"
-          placeholder="Search by country name"
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className="p-2 border rounded mb-4 text-center"
-        />
-
+        <div className="search">
+          <input
+            type="text"
+            placeholder="Search by country name"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="p-2 border rounded mb-4 text-center"
+          />
+        </div>
         {/* Dropdown menu for selecting regions */}
-        <label htmlFor="regionSelect" className="text-lg font-semibold mb-4">
-          Select a region:
-        </label>
-        <select
-          id="regionSelect"
-          onChange={(e) => setSelectedRegion(e.target.value)}
-          value={selectedRegion}
-          className="p-2 border rounded"
-        >
-          {/* Dropdown options for regions */}
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europe</option>
-          <option value="Africa">Africa</option>
-          <option value="Americas">Americas</option>
-          <option value="Oceania">Oceania</option>
-          {/* Add more options for other regions as needed */}
-        </select>
+        <div className="country-options">
+          <label htmlFor="regionSelect" className="text-lg p-4">
+            Select a region (Default Asia):
+          </label>
+          <select
+            id="regionSelect"
+            onChange={(e) => setSelectedRegion(e.target.value)}
+            value={selectedRegion}
+            className="p-2 border rounded"
+          >
+            {/* Dropdown options for regions */}
+            <option value="Asia">Filter by Region</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Africa">Africa</option>
+            <option value="Americas">Americas</option>
+            <option value="Oceania">Oceania</option>
+            {/* Add more options for other regions as needed */}
+          </select>
+        </div>
       </div>
 
       {/* Display countries in a grid */}
