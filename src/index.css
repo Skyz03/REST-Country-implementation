@@ -12,11 +12,22 @@
 /* Style the body with some spacing and center the content */
 body {
   font-family: Arial, sans-serif;
-  padding: 20px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+
+#root {
+  width: 100%
+}
+
+.dark {
+  @apply bg-gray-900 text-white;
+}
+
+.dark a {
+  @apply text-blue-500;
 }
 
 /* Create a grid container with three columns */

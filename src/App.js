@@ -50,9 +50,9 @@ const App = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className={`container mx-auto p-6 ${isDarkTheme ? "dark" : "light"}`}>
       {/* Page title */}
-      <div className={`container ${isDarkTheme ? "dark" : "light"}`}>
+      <div className="container">
         <h1 className="text-4xl font-bold mb-8 text-center text-red-500 dark:text-blue-500">
           Country Data
         </h1>
@@ -62,7 +62,9 @@ const App = () => {
         <div className="text-center mt-4">
           <button
             onClick={toggleTheme}
-            className="px-4 bg-gray-500 text-white rounded-md py-2"
+            className={`px-4 bg-${
+              isDarkTheme ? "gray-700" : "gray-500"
+            } rounded-md py-2`}
           >
             Toggle Theme
           </button>
@@ -118,7 +120,7 @@ const App = () => {
               className="h-56 object-cover w-full"
             />
             {/* Country information */}
-            <div className="p-6">
+            <div className={`p-6 ${isDarkTheme ? "dark" : "light"}`}>
               <h2 className="text-lg font-semibold">{country.name}</h2>
               <p>Population: {country.population}</p>
               <p>Capital: {country.capital}</p>
