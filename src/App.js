@@ -53,14 +53,16 @@ const App = () => {
     <div className="container mx-auto p-4">
       {/* Page title */}
       <div className={`container ${isDarkTheme ? "dark" : "light"}`}>
-        <h1 className="text-4xl font-bold mb-8 text-center">Country Data</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center text-red-500 dark:text-blue-500">
+          Country Data
+        </h1>
 
         {/* Your other content goes here */}
 
         <div className="text-center mt-4">
           <button
             onClick={toggleTheme}
-            className="px-4 py-2 bg-gray-500 text-white rounded-md"
+            className="px-4 bg-gray-500 text-white rounded-md py-2"
           >
             Toggle Theme
           </button>
