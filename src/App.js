@@ -50,9 +50,9 @@ const App = () => {
   };
 
   return (
-    <div className={`container mx-auto p-6 ${isDarkTheme ? "dark" : "light"}`}>
+    <div className={`w-full p-6 ${isDarkTheme ? "dark" : "light"}`}>
       {/* Page title */}
-      <div className="container">
+      <div className="container mx-auto">
         <h1 className="text-4xl font-bold mb-8 text-center text-red-500 dark:text-blue-500">
           Country Data
         </h1>
