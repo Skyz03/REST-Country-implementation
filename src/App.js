@@ -8,7 +8,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-
+  const [isGlassEffect, setGlassEffect] = useState(false);
   const toggleTheme = () => {
     setIsDarkTheme((prevTheme) => !prevTheme);
   };
@@ -17,6 +17,22 @@ const App = () => {
   useEffect(() => {
     fetchData(selectedRegion, searchTerm);
   }, [selectedRegion, searchTerm]);
+
+  const handleScroll = () => {
+    // Add logic for scroll behavior if needed
+    const scrollY = window.scrollY;
+    setGlassEffect(scrollY > 0);
+  };
+
+  useEffect(() => {
+    // Add event listener for scroll
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   // Function to fetch data from the API
   const fetchData = async (region, term) => {
@@ -50,24 +66,32 @@ const App = () => {
   };
 
   return (
-    <div className={`w-full p-6 ${isDarkTheme ? "dark" : "light"}`}>
+    <div className={`w-full p-6 ${isDarkTheme ? "dark" : "light"} pt-0`}>
       {/* Page title */}
-      <div className="container w-full flex flex-row justify-between items-center py-6">
-        <h1 className="text-4xl font-bold text-center text-red-500 dark:text-blue-500">
-          Country Data
-        </h1>
+      <header
+        className={`sticky top-0 bg-${
+          isDarkTheme ? "gray-800" : "white"
+        } py-4 z-10 backdrop-filter backdrop-blur-md bg-opacity-${
+          isGlassEffect ? "50" : "100"
+        }`}
+      >
+        <div className="container flex justify-between items-center">
+          <h1 className="text-4xl font-bold text-center text-red-500 dark:text-blue-500">
+            Country Data
+          </h1>
 
-        <div className="">
-          <button
-            onClick={toggleTheme}
-            className={`px-4 bg-${
-              isDarkTheme ? "gray-700" : "gray-500"
-            } rounded-md py-2`}
-          >
-            Toggle Theme
-          </button>
+          <div className="">
+            <button
+              onClick={toggleTheme}
+              className={`px-4 bg-${
+                isDarkTheme ? "gray-700" : "gray-500"
+              } rounded-md py-2`}
+            >
+              Toggle Theme
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
       <div className="flex flex-row justify-between">
         {/* Search input */}
