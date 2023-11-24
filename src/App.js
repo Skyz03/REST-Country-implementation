@@ -52,14 +52,12 @@ const App = () => {
   return (
     <div className={`w-full p-6 ${isDarkTheme ? "dark" : "light"}`}>
       {/* Page title */}
-      <div className="container mx-auto">
-        <h1 className="text-4xl font-bold mb-8 text-center text-red-500 dark:text-blue-500">
+      <div className="container w-full flex flex-row justify-between items-center py-6">
+        <h1 className="text-4xl font-bold text-center text-red-500 dark:text-blue-500">
           Country Data
         </h1>
 
-        {/* Your other content goes here */}
-
-        <div className="text-center mt-4">
+        <div className="">
           <button
             onClick={toggleTheme}
             className={`px-4 bg-${
