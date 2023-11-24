@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
+import * as Unicons from "@iconscout/react-unicons";
 
 const App = () => {
   // State variables
@@ -76,18 +77,23 @@ const App = () => {
         }`}
       >
         <div className="container flex justify-between items-center">
-          <h1 className="text-4xl font-bold text-center text-red-500 dark:text-blue-500">
-            Country Data
+          <h1 className="text-4xl font-bold text-center ">
+            Where in the world?
           </h1>
 
-          <div className="">
+          <div className="flex flex-row items-center justify-center">
+            {isDarkTheme ? (
+              <Unicons.UilSun size="35" color="#ffc" />
+            ) : (
+              <Unicons.UilMoon size="35" color="#ffc" />
+            )}
             <button
               onClick={toggleTheme}
               className={`px-4 bg-${
                 isDarkTheme ? "gray-700" : "gray-500"
               } rounded-md py-2`}
             >
-              Toggle Theme
+              {isDarkTheme ? "Light Mode" : "Dark Mode"}
             </button>
           </div>
         </div>
